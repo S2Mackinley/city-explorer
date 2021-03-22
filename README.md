@@ -25,7 +25,7 @@
 
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
-Name of feature: **************\_\_\_\_**************
+Name of feature: setup
 
 Estimate of time needed to complete: **\_**
 
