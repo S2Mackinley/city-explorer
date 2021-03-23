@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ErrorMessage from './Error.js';
+import './App.js';
+
 
 class App extends React.Component{
   constructor(props){
@@ -48,15 +50,27 @@ class App extends React.Component{
     console.log('state', this.state)
     return(
       <>
-        <Form  onSubmit={this.getLocationInfo} >
+        <Form  onSubmit={this.getLocationInfo}
+          bg="secondary"
+          text="light"
+        >
+          <h1>Welcome!</h1>
           <input onChange={(e) => this.setState({ searchQuery: e.target.value })}  placeholder="type a city..."/>
-          <Button type="submit">explore!</Button>
+          &nbsp;&nbsp;
+          <Button 
+          type="submit"
+          variant="dark"
+          size="sm"
+          > explore!</Button>
         </Form>
-
+        <br/>
         {this.state.displayResults &&
 
-            <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="holder.js/100px180" src={this.state.imgSrc} alt=''/>
+            <Card style={{ width: '35rem' }}
+            bg="secondary"
+            text="light"
+            >
+              <Card.Img variant="top" src={this.state.imgSrc} alt='location'/>
               <Card.Body>
                 <Card.Title>{this.state.location.display_name}</Card.Title>
                 <Card.Text>
