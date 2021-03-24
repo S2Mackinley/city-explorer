@@ -76,11 +76,12 @@ class App extends React.Component{
               <Card.Body>
                 <Card.Title>{this.state.location.display_name}</Card.Title>
                 <Card.Text>
-                <p>Lattitude: {this.state.location.lat}</p>
-                
-                <p>Longitute: {this.state.location.lon}</p>
-                <Forecast />
-                </Card.Text>               
+                Lattitude: {this.state.location.lat}
+                </Card.Text> 
+                <Card.Text>
+                Longitute: {this.state.location.lon}
+                </Card.Text> 
+                <Forecast />              
               </Card.Body>
           </Card>
         }

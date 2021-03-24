@@ -19,7 +19,7 @@ class Forecast extends React.Component {
 
   forecastRender(){
     const data = this.state.weatherForecast;
-    return <ul>{data.map(item => <li>{item.date}: {item.description}</li>)}</ul>
+    return <ul>{data.map((item, index) => <li key={index}>{item.date}: {item.description}</li>)}</ul>
   }
 
   render() {
