@@ -6,7 +6,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ErrorMessage from './Error.js';
 import './App.js';
-
+import Map from './map.js';
+import Forecast from './forecast';
 
 class App extends React.Component{
   constructor(props){
@@ -70,14 +71,15 @@ class App extends React.Component{
             bg="secondary"
             text="light"
             >
-              <Card.Img variant="top" src={this.state.imgSrc} alt='location'/>
+              <Map imageSrc={this.state.imgSrc} />
+              {/* <Card.Img variant="top" src={this.state.imgSrc} alt='location'/> */}
               <Card.Body>
                 <Card.Title>{this.state.location.display_name}</Card.Title>
                 <Card.Text>
                 <p>Lattitude: {this.state.location.lat}</p>
                 
                 <p>Longitute: {this.state.location.lon}</p>
-                
+                <Forecast />
                 </Card.Text>               
               </Card.Body>
           </Card>
