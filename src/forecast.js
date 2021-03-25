@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+
 
 class Forecast extends React.Component {
   constructor(props) {
@@ -9,16 +9,10 @@ class Forecast extends React.Component {
     }
   }
 
-  componentDidMount = async () => {
-    const SERVER = 'http://localhost:3001';
-    const forecast = await axios.get(`${SERVER}/weather`);
-    const forecastArray = forecast.data;
-    console.log({ forecastArray });
-    this.setState({ weatherForecast: forecastArray.forecast });
-  }
+
 
   forecastRender(){
-    const data = this.state.weatherForecast;
+    const data = this.props.weather;
     return <ul>{data.map((item, index) => <li key={index}>{item.date}: {item.description}</li>)}</ul>
   }
 
@@ -26,6 +20,7 @@ class Forecast extends React.Component {
     return (
       <>
         <h2>Weather</h2>
+        
         {this.forecastRender()}
       </>
     )

@@ -5,9 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ErrorMessage from './Error.js';
-import './App.js';
 import Map from './map.js';
-import Forecast from './forecast';
+import Forecast from './forecast.js';
 
 class App extends React.Component{
   constructor(props){
@@ -16,7 +15,8 @@ class App extends React.Component{
       location:{},
       searchQuery: '',
       imgSrc: '',
-      displayResults: false
+      displayResults: false,
+      weatherArray: [],
     }
     // console.log('constructor');
   }
@@ -29,11 +29,16 @@ class App extends React.Component{
     console.log(url);
     const location = await axios.get(url);
     const locationArray = location.data;
+    const weatherUrl = `http://localhost:3001/weather`;
+    const weather = await axios.get(weatherUrl, {params: {city: this.state.searchQuery}});
     console.log(locationArray);
+    console.log('stuff', weather);
     this.setState({ 
       location: locationArray[0], 
       displayResults: true,
       imgSrc: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${locationArray[0].lat},${locationArray[0].lon}&zoom=13`, 
+      weatherArray: weather.data.forecast
+      
     });
   } catch(err) {
     console.log(err.message);
@@ -81,7 +86,7 @@ class App extends React.Component{
                 <Card.Text>
                 Longitute: {this.state.location.lon}
                 </Card.Text> 
-                <Forecast />              
+                <Forecast weather={this.state.weatherArray}/>              
               </Card.Body>
           </Card>
         }
