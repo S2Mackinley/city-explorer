@@ -13,13 +13,15 @@ class Forecast extends React.Component {
 
   forecastRender(){
     const data = this.props.weather;
-    return <ul>{data.map((item, index) => <li key={index}>{item.date}: {item.description}</li>)}</ul>
+    return <ul>{data.map((item, index) => 
+    <li key={index}>{item.date}: {item.description}</li>)}
+    </ul>
   }
 
   render() {
     return (
       <>
-        <h2>Weather</h2>
+        <h2>Forecast</h2>
         
         {this.forecastRender()}
       </>
