@@ -9,7 +9,7 @@ import Card from 'react-bootstrap/Card'
 import Weather from "./weather";
 import Movie from "./movie";
 
-class Body extends React.Component {
+class FormInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,15 +60,19 @@ class Body extends React.Component {
   };
 
   getMovieInfo = async (location) => {
-    try {
-      const movie = await axios.get(`http://localhost:3001/movie`);
-      this.setState({ movieArray: movie.data });
-      console.log("inside getMovieInfo", movie);
-    } catch (err) {
-      console.log(err);
-    }
+      const SERVER = process.env.REACT_APP_SERVER;
+      axios.get(`${SERVER}/movies?location=${location}`)
+      .then(movie => {
+        this.setState({ movieArray: movie.data });
+      })
+      .catch(err => {
+        console.log(err.message);
+        this.setState({ displayErrorModal: true, errorMessage: err.message })
+      })
   };
+  // const movie = await axios.get(`http://localhost:3001/movies`,);
 
+  // const movie = await axios.get(movie_url);
   render() {
     return (
       <div className="body">
@@ -112,4 +116,4 @@ class Body extends React.Component {
     );
   }
 }
-export default Body;
+export default FormInfo;

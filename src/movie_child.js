@@ -14,6 +14,9 @@ class MovieC extends React.Component {
             <Card.Img src={this.props.img} alt={this.props.title}/>
             <Card.Text>Released on: {this.props.released_on}</Card.Text>
             <Card.Text style={{textAlign: "center"}}>{this.props.description}</Card.Text>
+            <Card.Text >{this.props.popularity}</Card.Text>
+            <Card.Text >{this.props.average_votes}</Card.Text>
+            <Card.Text >{this.props.total_votes}</Card.Text>
             </Card>
           </CardGroup>
       </div>
