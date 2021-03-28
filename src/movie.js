@@ -18,6 +18,9 @@ class Movie extends React.Component {
             released_on={element.released_on}
             img={element.image_url}
             description={element.overview}
+            average_votes={element.average_votes}
+            total_votes={element.total_votes}
+            popularity={element.popularity}
           />
         ))}
       </Card>
