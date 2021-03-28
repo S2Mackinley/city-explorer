@@ -1,42 +1,27 @@
-import React from 'react';
-
-
+import React from "react";
+import MovieC from "./movie_child";
+import Card from 'react-bootstrap/Card'
 class Movie extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movies: []
-    }
+  addDefaultSrc(e) {
+    e.target.src = "http://via.placeholder.com/300x450";
   }
-
-
-  moviesRender(){
-    const data = this.props.movie;
-    return <ul>{data.map((movie, index) => 
-        <div key={index}>
-        <img src={movie.image_url} alt={movie.title}></img>
-        <h2>{movie.title}</h2>
-        <p>{movie.overview}</p>
-        <h4>Release Date: {movie.released_on}</h4>
-        <h4>Popularity Score: {movie.popularity}</h4>
-        <h4>Total Votes: {movie.total_votes}</h4>
-        <h4>Avg Score per Vote: {movie.average_votes}</h4>
-        </div>
-      )}
-      </ul>
-   
-    
-  }
-
   render() {
+    let data = this.props.movie;
+
+
     return (
-      <>
-        <h2>Movies</h2>
-        
-        {this.moviesRender()}
-      </>
-    )
+      <Card style={{alignSelf: "center", width: "100%",}}>
+        {data.map((element, index) => (
+          <MovieC
+            key = {`id${Math.random().toString(16).slice(2)}`}
+            title={element.title}
+            released_on={element.released_on}
+            img={element.image_url}
+            description={element.overview}
+          />
+        ))}
+      </Card>
+    );
   }
 }
-
 export default Movie;
